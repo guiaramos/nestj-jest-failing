@@ -1,0 +1,17 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "moduleNameMapper": {
+    "^src/(.*)": "<rootDir>/src/$1",
+    "amazon-cognito-identity-js": "<rootDir>/__mocks__/amazon-cognito-identity-js/index.ts"
+  },
+  "modulePathIgnorePatterns": ["<rootDir>/dist/"],
+  "rootDir": ".",
+  "testRegex": ".*\\.spec\\.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "collectCoverageFrom": ["**/*.(t|j)s"],
+  "setupFilesAfterEnv": ["./jest.setup.ts"],
+  "coverageDirectory": "../coverage",
+  "testEnvironment": "node"
+}

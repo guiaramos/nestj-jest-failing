@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "eamodio.gitlens",
+    "kumar-harsh.graphql-for-vscode",
+    "andys8.jest-snippets",
+    "syler.sass-indented",
+    "glen-84.sass-lint",
+    "jpoissonnier.vscode-styled-components",
+    "ferdelamad.styled-snippets",
+    "streetsidesoftware.code-spell-checker"
+  ]
+}

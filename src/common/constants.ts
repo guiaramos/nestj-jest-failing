@@ -1,0 +1,35 @@
+export const ERRORS = {
+  CODE: {
+    SMTH_WENT_WRONG: 'Something went wrong',
+  },
+  AUTH: {
+    MUST_LOGIN: 'User not authenticated',
+    CONFIRM_ACCOUNT: 'User not confirmed, please click on email link',
+    NOT_FOUND_PAYLOAD: 'Token info not found',
+    FORGOT_PASSWORD_EXPIRE: 'The code is expired',
+    NOT_FOUND_USER_COGNITO: 'User not found on cognito token',
+    LOG_OUT: 'Could not logout',
+    FORGOT_PASSWORD: 'Could not receive code for reset password',
+    SIGN_UP: 'Failed to sign up',
+    SIGN_IN: 'Failed to sign in',
+    SIGN_UP_DELETE: 'Failed to sign up and delete user from db',
+    RESEND_CODE: 'Failed to resend the confirmation code',
+    NEW_PASSWORD: 'Could not set the new password',
+    PASSWORD_MATCH: 'The password does not match',
+    CHANGE_PASSWORD: 'Could not change the password',
+    PASSWORD_WEAK: 'Password too weak',
+  },
+  USER: {
+    CREATE: 'Could not create user',
+    UPDATE: 'Could not update the user',
+    CREDENTIALS: 'Credentials is wrong',
+    EXIST: 'User already exists',
+    EMAIL_USE: 'The email is already being used',
+    NICK_NAME_USE: 'The nickname is already being used',
+    NOT_FOUND: 'User not found',
+    VERIFY_PHONE: 'Could not verify number',
+  },
+  FILE: {
+    LINK: 'Could not generate the link',
+  },
+};

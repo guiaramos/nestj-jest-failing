@@ -1,0 +1,47 @@
+version: '3.7'
+
+services:
+  nest:
+    container_name: nest
+    restart: always
+    build:
+      context: .
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - ${BACKEND_PORT}:${BACKEND_PORT}
+      - 9229:9229
+    command: npm run start:dev
+    networks:
+      - webnet
+    depends_on:
+      - redis
+      - mongodb
+
+  redis:
+    container_name: redis
+    image: redis:5
+    ports:
+      - 6379:6379
+    networks:
+      - webnet
+
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    networks:
+      - webnet
+    volumes:
+      - mongodata:/data/db
+    ports:
+      - 27017:27017
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: ${DB_USERNAME}
+    #   MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+
+networks:
+  webnet:
+volumes:
+  mongodata:

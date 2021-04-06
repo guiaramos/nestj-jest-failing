@@ -1,0 +1,341 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Profile {
+  camera: [String!]
+  exposure: Boolean
+  topSize: String
+  bottomSize: String
+  shoesSize: String
+  height: Float
+  skin: String
+  married: Boolean
+  children: Boolean
+  pet: Boolean
+}
+
+type Media {
+  media: MediaEnum
+  category: [String!]
+}
+
+enum MediaEnum {
+  YOUTUBE
+  INSTAGRAM
+  BLOG
+  TWITCH
+  AFREECATV
+}
+
+type AccountLink {
+  account: AccountLinkEnum
+  nickname: String
+  accessToken: String
+}
+
+enum AccountLinkEnum {
+  YOUTUBE
+  INSTAGRAM
+}
+
+type Address {
+  address: String
+  complement: String
+  district: String
+  province: String
+  zip: Float
+}
+
+type Region {
+  activity: Boolean
+  seoul: [String!]
+  gyeonggi: [String!]
+  other: [String!]
+}
+
+type RegistrationInfo {
+  status: RegistrationStatusEnum
+  number: Float
+  file: String
+}
+
+enum RegistrationStatusEnum {
+  PENDING
+  VERIFIED
+}
+
+type BankInfo {
+  alias: String
+  bankName: String
+  accountHolder: String
+  accountNumber: Float
+  bankBook: String
+  default: Boolean
+}
+
+type Notification {
+  marketing: Boolean
+  email: Boolean
+  SMS: Boolean
+}
+
+type Company {
+  name: String
+  registrationInfo: RegistrationInfo
+  bankInfo: BankInfo
+  ownerName: String
+  managerName: String
+  classification: String
+  industry: String
+  mgrPhoneNumber: String
+  communicationRegNo: String
+  bizPhoneNumber: String
+  bizFaxNumber: String
+  websiteUrl: String
+}
+
+type User {
+  _id: ID!
+  cognitoId: String
+  partnerId: Float
+  email: String
+  name: String
+  nickname: String
+  picture: String
+  birthYear: Float
+  role: UserRoles!
+  phoneNumber: String
+  phoneNumberVerified: Boolean
+  company: Company
+  notification: Notification
+  media: Media
+  address: Address
+  region: Region
+  accountLink: AccountLink
+  profile: Profile
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum UserRoles {
+  ADVERTISER
+  INFLUENCER
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type File {
+  """the url to post the file"""
+  url: String!
+
+  """after posting the file, it will be available on this url"""
+  fileUrl: String!
+
+  """the name of the file"""
+  name: String!
+}
+
+type Query {
+  getMe: User!
+}
+
+type Mutation {
+  signIn(input: SignInInput!): User!
+  signUp(input: SignUpInput!): User!
+  resendSignUpLink(input: ResendLinkInput!): Boolean!
+  forgotPassword(input: ForgotPasswordInput!): Boolean!
+  forgotPasswordConfirm(input: ForgotPasswordConfirmInput!): Boolean!
+  signOut: Boolean!
+  changePassword(input: ChangePasswordInput!): Boolean!
+  isEmailAvailable(input: IsEmailAvailableInput!): Boolean!
+  updateUser(input: UpdateUserInput!): User!
+  requestPhoneVerification(input: RequestPhoneVerInput!): Boolean!
+  verifyPhoneNumber(input: VerifyPhoneInput!): Boolean!
+  createFileLink(createFileLinkInput: CreateFileLinkInput!): File!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}
+
+input SignUpInput {
+  name: String!
+  nickname: String
+  email: String!
+  picture: String
+  role: UserRoles!
+  company: CreateUserCompanyInput
+  notification: CreateUserNotificationInput
+  media: MediaInput
+  region: RegionInput
+  phoneNumber: String!
+  password: String!
+  passwordConfirm: String!
+}
+
+input CreateUserCompanyInput {
+  name: String
+  managerName: String
+  mgrPhoneNumber: String
+}
+
+input CreateUserNotificationInput {
+  marketing: Boolean
+}
+
+input MediaInput {
+  media: MediaEnum!
+  category: [String!]
+}
+
+input RegionInput {
+  activity: Boolean
+  seoul: [String!]
+  gyeonggi: [String!]
+  other: [String!]
+}
+
+input ResendLinkInput {
+  email: String!
+}
+
+input ForgotPasswordInput {
+  email: String!
+}
+
+input ForgotPasswordConfirmInput {
+  email: String!
+  code: String!
+  newPassword: String!
+  newPasswordConfirm: String!
+}
+
+input ChangePasswordInput {
+  oldPassword: String!
+  newPassword: String!
+  newPasswordConfirm: String!
+}
+
+input IsEmailAvailableInput {
+  email: String!
+}
+
+input UpdateUserInput {
+  name: String
+  nickname: String
+  picture: String
+  birthYear: Float
+  phoneNumber: String
+  phoneNumberVerified: Boolean
+  company: UpdateCompanyInput
+  notification: UpdateNotificationInput
+  media: UpdateMediaInput
+  address: UpdateAddressInput
+  region: UpdateRegionInput
+  accountLink: UpdateAccountLinkInput
+  profile: UpdateProfileInput
+}
+
+input UpdateCompanyInput {
+  name: String
+  registrationInfo: UpdateRegistrationInfoInput
+  bankInfo: UpdateBankInfoInput
+  ownerName: String
+  managerName: String
+  classification: String
+  industry: String
+  mgrPhoneNumber: String
+  communicationRegNo: String
+  bizPhoneNumber: String
+  bizFaxNumber: String
+  websiteUrl: String
+}
+
+input UpdateRegistrationInfoInput {
+  status: RegistrationStatusEnum!
+  number: Float!
+  file: String!
+}
+
+input UpdateBankInfoInput {
+  alias: String!
+  bankName: String!
+  accountHolder: String!
+  accountNumber: Float!
+  bankBook: String!
+  default: Boolean!
+}
+
+input UpdateNotificationInput {
+  marketing: Boolean!
+  email: Boolean!
+  SMS: Boolean!
+}
+
+input UpdateMediaInput {
+  media: MediaEnum!
+  category: [String!]
+}
+
+input UpdateAddressInput {
+  address: String!
+  complement: String!
+  district: String!
+  province: String!
+  zip: Float!
+}
+
+input UpdateRegionInput {
+  activity: Boolean
+  seoul: [String!]
+  gyeonggi: [String!]
+  other: [String!]
+}
+
+input UpdateAccountLinkInput {
+  account: AccountLinkEnum!
+  nickname: String!
+  accessToken: String!
+}
+
+input UpdateProfileInput {
+  camera: [String!]
+  exposure: Boolean!
+  topSize: String
+  bottomSize: String
+  shoesSize: String
+  height: Float
+  skin: String
+  married: Boolean!
+  children: Boolean!
+  pet: Boolean!
+}
+
+input RequestPhoneVerInput {
+  phoneNumber: String!
+}
+
+input VerifyPhoneInput {
+  phoneNumber: String!
+  code: String!
+}
+
+input CreateFileLinkInput {
+  """the name of the file"""
+  name: String!
+  type: FileEnum!
+
+  """file extension ex: png, jpg, pdf"""
+  extension: String!
+}
+
+enum FileEnum {
+  PROFILE
+  CAMPAIGN
+  DOC
+}
